@@ -1,0 +1,40 @@
+button {
+    background-color: rgb(4, 103, 110);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    margin: 5px;
+}
+
+.choices {
+    display: flex;
+    flex-direction: column;
+  /*  width: 576px; 
+    margin: auto;*/
+    align-items: center; 
+}
+
+main {
+    width: 576px;
+    margin: auto;
+}
+
+.btn {
+    background-color: rgb(192, 87, 1);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    margin: 5px;
+}
+
+.scoreDiv {
+    background-color: burlywood;
+    padding: 10px;
+}
+
+.h2 {
+    font-size: 20px;
+    font-weight: bold;
+}
