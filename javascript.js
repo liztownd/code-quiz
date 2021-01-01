@@ -8,10 +8,11 @@ var index = 0;
 var endGame = false;
 var highScores = [
     {
-        score: 5,
-        init: "et",
+        score: 0,
+        init: "",
     }
 ];
+
 
 var intro = {
     introText: "Answer the questions within the time provided. For every wrong answer you lose 10 seconds on the timer! Click start when ready. Good luck!",
@@ -55,8 +56,8 @@ function checkAnswer() {
         highScore();
         endGame = true;
 
-    } 
-    
+    }
+
     else {
         getQuestion();
     }
@@ -113,19 +114,41 @@ function initialize() {
 
 function renderHighScores() {
 
-   for (j = 0; j < highScores.length; j++) {
+    var renderedScores = highScores.flat(highScores.length - 1);
+
+
+    for (j = 0; j < renderedScores.length; j++) {
 
 
         var scoreDiv = document.createElement("div");
         scoreDiv.setAttribute("class", "scoreDiv");
 
-       scoreDiv.textContent = "Score: " + highScores[j].score + " --------- by " + highScores[j].init;
-        question.append(scoreDiv); 
+        scoreDiv.textContent = "Score: " + renderedScores[j].score + " --------- by " + renderedScores[j].init;
+        question.append(scoreDiv);
 
     }
 
 
 };
+
+function getStoredScores() {
+
+    if (localStorage.getItem("scores") === null) {
+        return
+    }
+
+    else {
+
+
+        var storedScores = JSON.parse(localStorage.getItem("scores"));
+
+        console.log(storedScores);
+
+        highScores.push(storedScores);
+    }
+
+};
+
 
 function highScore() {
 
@@ -137,15 +160,6 @@ function highScore() {
     hsDiv.textContent = "High Scores";
     hsDiv.setAttribute("class", "h2");
     question.prepend(hsDiv);
-
- //   localStorage.getItem("scores");
-
-  //  if ("scores" === true) {
-
-  //      highScores = JSON.parse("scores");
-
-  //  };
-
 
     var initInput = document.createElement("input");
     initInput.setAttribute("id", initInput);
@@ -163,7 +177,6 @@ function highScore() {
 
     submitBtn.onclick = (function (event) {
         event.preventDefault();
-        console.log("test");
 
         var newScores = {
             score: 0,
@@ -173,7 +186,11 @@ function highScore() {
         newScores.score = timeLeft;
         newScores.init = initInput.value;
 
+        getStoredScores();
+
+
         highScores.push(newScores);
+
 
         choices.textContent = "";
 
@@ -181,10 +198,10 @@ function highScore() {
 
         renderHighScores()
 
-        //   var storedScores = (JSON.stringify(highScores));
+        var storedScores = (JSON.stringify(highScores));
 
 
-        //  localStorage.setItem(storedScores);
+        localStorage.setItem("scores", storedScores);
 
 
     }

@@ -9,9 +9,7 @@ button {
 
 .choices {
     display: flex;
-    flex-direction: column;
-  /*  width: 576px; 
-    margin: auto;*/
+    flex-direction: column;    
     align-items: center; 
 }
 
@@ -21,7 +19,7 @@ main {
 }
 
 .btn {
-    background-color: rgb(192, 87, 1);
+    background-color: rgb(4, 103, 110);
     color: white;
     border: none;
     padding: 8px 20px;
@@ -30,8 +28,11 @@ main {
 }
 
 .scoreDiv {
-    background-color: burlywood;
-    padding: 10px;
+    background-color: rgb(135, 222, 222);
+    padding: 5px;
+    margin: 5px;
+  /*  text-align: justify; */
+    border-bottom: darkblue solid 1px;
 }
 
 .h2 {
