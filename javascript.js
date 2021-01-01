@@ -2,6 +2,7 @@ var timeEl = document.getElementById("timeLeft");
 var main = document.getElementById("main");
 var question = document.getElementById("question");
 var choices = document.getElementById("choices")
+var viewHighScores = document.getElementById("viewHighScores");
 
 var timeLeft = 90;
 var index = 0;
@@ -15,7 +16,7 @@ var highScores = [
 
 
 var intro = {
-    introText: "Answer the questions within the time provided. For every wrong answer you lose 10 seconds on the timer! Click start when ready. Good luck!",
+    introText: "Answer the questions within the time provided. For every wrong answer you lose 10 seconds on the timer - the time on the timer when the last question is answered is your score! Click start when ready. Good luck!",
 };
 
 var questions = [
@@ -33,6 +34,7 @@ var questions = [
 ];
 
 initialize();
+
 
 
 function checkAnswer() {
@@ -98,9 +100,10 @@ function startGame() {
 }
 
 function initialize() {
+    //clear previous content
     //display welcome
     //create button
-    //diplay both items
+    //display both items
     question.textContent = intro.introText;
     var startBtn = document.createElement("button");
     startBtn.setAttribute("id", "startBtn");
@@ -128,6 +131,28 @@ function renderHighScores() {
 
     }
 
+    var startOverBtn = document.createElement("button");
+    startOverBtn.setAttribute("id", "startOverBtn");
+    startOverBtn.textContent = "Start Over";
+
+    var clearScoresBtn = document.createElement("button");
+    clearScoresBtn.setAttribute("id", "clearScoresBtn");
+    clearScoresBtn.textContent = "Clear Scores";
+
+    choices.append(startOverBtn);
+    choices.append(clearScoresBtn);
+
+    startOverBtn.onclick = function () {
+
+        location.reload();
+        return false;
+    }
+
+    clearScoresBtn.onclick = function () {
+        localStorage.clear();
+        questions.textContent = "";
+
+    }
 
 };
 
@@ -206,8 +231,32 @@ function highScore() {
 
     }
     );
+}
+
+viewHighScores.onclick = function () {
+
+    question.textContent = "";
+    choices.innerHTML = "";
+
+
+
+    getStoredScores();
+    renderHighScores();
+
+    var backBtn = document.createElement("button");
+
+    backBtn.setAttribute("id", "backBtn");
+    backBtn.textContent = "Back";
+
+    choices.append(backBtn);
+
+    backBtn.onclick = function () {
+        choices.innerHTML = "";
+        initialize();
+    }
 
 }
+
 
 function setTime() {
     var timerInterval = setInterval(function () {

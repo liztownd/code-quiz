@@ -39,3 +39,9 @@ main {
     font-size: 20px;
     font-weight: bold;
 }
+
+.timeEl {
+    border: darkblue solid 1px;
+    border-radius: 8px;
+    padding: 12px 28px;
+}
