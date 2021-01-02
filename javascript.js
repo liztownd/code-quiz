@@ -9,8 +9,8 @@ var index = 0;
 var endGame = false;
 var highScores = [
     {
-        score: 0,
-        init: "",
+        score: 100,
+        init: "The Boss",
     }
 ];
 
@@ -21,14 +21,32 @@ var intro = {
 
 var questions = [
     {
-        question: "what is today?",
-        choices: ["mon", "sun", "yues", "sat"],
-        answer: "sun"
+        question: "In a javascript for loop, i++ indicates:",
+        choices: ["A) The index is positive.", "B) Subtract one from the index.", "C) Add one to the index.", "D) Add two to the index."],
+        answer: "C) Add one to the index."
     },
     {
-        question: "what is dog?",
-        choices: ["cat", "sun", "dog", "sat"],
-        answer: "dog"
+        question: "An array in javascript is indicated by using:",
+        choices: ["A) Square brackets - [ ]", "B) Curly brackets - { }", "C) Prenthesis - ( )", "D) None of the above."],
+        answer: "A) Square brackets - [ ]"
+    },
+
+    {
+        question: "In CSS, to set attributes for a class, use the notation:",
+        choices: ["A) #className { }", "B) className ( )", "C) #className [ ]", "D) .className { }"],
+        answer: "D) .className { }"
+    },
+
+    {
+        question: "What is not a component of a webpage?",
+        choices: ["A) HTML", "B) DeerFox", "C) Javascript", "D) CSS"],
+        answer: "B) DeerFox"
+    },
+
+    {
+        question: "Which of the following is considered a Semantic HTML tag?",
+        choices: ["A) div", "B) p", "C) section", "D) script"],
+        answer: "C) section"
     },
 
 ];
