@@ -133,7 +133,7 @@ function renderHighScores() {
 
     var startOverBtn = document.createElement("button");
     startOverBtn.setAttribute("id", "startOverBtn");
-    startOverBtn.textContent = "Start Over";
+    startOverBtn.textContent = "Home";
 
     var clearScoresBtn = document.createElement("button");
     clearScoresBtn.setAttribute("id", "clearScoresBtn");
@@ -145,12 +145,14 @@ function renderHighScores() {
     startOverBtn.onclick = function () {
 
         location.reload();
-        return false;
+        return false; 
     }
 
     clearScoresBtn.onclick = function () {
-        localStorage.clear();
+
         questions.textContent = "";
+
+        localStorage.clear();
 
     }
 
@@ -188,6 +190,7 @@ function highScore() {
 
     var initInput = document.createElement("input");
     initInput.setAttribute("id", initInput);
+    initInput.setAttribute("placeholder", "Enter Initials")
 
     var submitBtn = document.createElement('input');
     submitBtn.type = 'button';
@@ -238,22 +241,8 @@ viewHighScores.onclick = function () {
     question.textContent = "";
     choices.innerHTML = "";
 
-
-
     getStoredScores();
     renderHighScores();
-
-    var backBtn = document.createElement("button");
-
-    backBtn.setAttribute("id", "backBtn");
-    backBtn.textContent = "Back";
-
-    choices.append(backBtn);
-
-    backBtn.onclick = function () {
-        choices.innerHTML = "";
-        initialize();
-    }
 
 }
 
