@@ -133,48 +133,56 @@ function initialize() {
 };
 
 
-function renderHighScores() {
+// function renderHighScores() {
 
-    var renderedScores = highScores.flat(highScores.length - 1);
+// // flat doesn't work after 4 iterations...
+
+//     var renderedScores = highScores.flat(highScores.length - 1);
 
 
-    for (j = 0; j < renderedScores.length; j++) {
+//     for (j = 0; j < renderedScores.length; j++) {
 
 
-        var scoreDiv = document.createElement("div");
-        scoreDiv.setAttribute("class", "scoreDiv");
+//         var scoreDiv = document.createElement("div");
+//         scoreDiv.setAttribute("class", "scoreDiv");
 
-        scoreDiv.textContent = "Score: " + renderedScores[j].score + " --------- by " + renderedScores[j].init;
-        question.append(scoreDiv);
+//         scoreDiv.textContent = "Score: " + renderedScores[j].score + " --------- by " + renderedScores[j].init;
+//         question.append(scoreDiv);
 
-    }
+//     }
 
-    var startOverBtn = document.createElement("button");
-    startOverBtn.setAttribute("id", "startOverBtn");
-    startOverBtn.textContent = "Home";
+//     var startOverBtn = document.createElement("button");
+//     startOverBtn.setAttribute("id", "startOverBtn");
+//     startOverBtn.textContent = "Home";
 
-    var clearScoresBtn = document.createElement("button");
-    clearScoresBtn.setAttribute("id", "clearScoresBtn");
-    clearScoresBtn.textContent = "Clear Scores";
+//     var clearScoresBtn = document.createElement("button");
+//     clearScoresBtn.setAttribute("id", "clearScoresBtn");
+//     clearScoresBtn.textContent = "Clear Scores";
 
-    choices.append(startOverBtn);
-    choices.append(clearScoresBtn);
+//     choices.append(startOverBtn);
+//     choices.append(clearScoresBtn);
 
-    startOverBtn.onclick = function () {
+//     startOverBtn.onclick = function () {
 
-        location.reload();
-        return false; 
-    }
+//         location.reload();
+//         return false; 
+//     }
 
-    clearScoresBtn.onclick = function () {
+//     clearScoresBtn.onclick = function () {
 
-        questions.textContent = "";
+//         var clear = scoreDiv.textContent = "";
 
-        localStorage.clear();
+//         localStorage.clear();
 
-    }
 
-};
+// // clear contents - not working
+
+//         question.append(clear);
+//         renderHighScores();
+
+//     }
+
+// };
 
 function getStoredScores() {
 
@@ -189,7 +197,7 @@ function getStoredScores() {
 
         console.log(storedScores);
 
-        highScores.push(storedScores);
+      //  highScores.push(storedScores);
     }
 
 };
@@ -232,23 +240,25 @@ function highScore() {
         newScores.score = timeLeft;
         newScores.init = initInput.value;
 
-        getStoredScores();
+     
+
+// assign new scores to high scores object - not working
+// pulls duplicate high scores with each iteration
 
 
-        highScores.push(newScores);
+      //  highScores.push(newScores);
 
 
         choices.textContent = "";
 
         console.log(highScores)
 
-        renderHighScores()
+       // renderHighScores()
+        var arr = JSON.parse(localStorage.getItem("scores")) || [];
+        arr.push(newScores);
+        localStorage.setItem("scores", JSON.stringify(arr));
 
-        var storedScores = (JSON.stringify(highScores));
-
-
-        localStorage.setItem("scores", storedScores);
-
+        window.location.href ="highscores.html";
 
     }
     );
@@ -256,11 +266,12 @@ function highScore() {
 
 viewHighScores.onclick = function () {
 
-    question.textContent = "";
-    choices.innerHTML = "";
+    // question.textContent = "";
+    // choices.innerHTML = "";
 
-    getStoredScores();
-    renderHighScores();
+    // getStoredScores();
+    //renderHighScores();
+   window.location.href = "highscores.html";
 
 }
 
