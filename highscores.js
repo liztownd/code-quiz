@@ -2,17 +2,17 @@ var question = document.getElementById("question");
 
 function renderHighScores() {
 
-    // flat doesn't work after 4 iterations...
     var storedScores = JSON.parse(localStorage.getItem("scores"));
     console.log(storedScores)
         //var renderedScores = highScores.flat(highScores.length - 1);
 
         if (storedScores === null){
-            console.log("TYUIKMNBVGH");
-            var emptyDiv = document.createElement("h2");
-            emptyDiv.textContent = "No scored stored";
+            var emptyDiv = document.createElement("h3");
+            emptyDiv.textContent = "No scores stored - press Home to play and add your score!";
             question.appendChild(emptyDiv);
-        } else{
+        } 
+        
+        else{
 
         for (j = 0; j < storedScores.length; j++) {
     
@@ -25,6 +25,7 @@ function renderHighScores() {
     
         }
     } //else closing
+
         var startOverBtn = document.createElement("button");
         startOverBtn.setAttribute("id", "startOverBtn");
         startOverBtn.textContent = "Home";
@@ -38,22 +39,15 @@ function renderHighScores() {
     
         startOverBtn.onclick = function () {
     
-            location.reload();
             window.location.href = "index.html"
             return false; 
         }
     
         clearScoresBtn.onclick = function () {
-    
-           // var clear = scoreDiv.textContent = "";
-    
+        
             localStorage.clear();
             window.location.reload();
     
-    
-    // clear contents - not working
-    
-            question.append(clear);
             renderHighScores();
     
         }

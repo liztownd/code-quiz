@@ -7,12 +7,7 @@ var viewHighScores = document.getElementById("viewHighScores");
 var timeLeft = 90;
 var index = 0;
 var endGame = false;
-var highScores = [
-    {
-        score: 100,
-        init: "The Boss",
-    }
-];
+
 
 
 var intro = {
@@ -133,57 +128,6 @@ function initialize() {
 };
 
 
-// function renderHighScores() {
-
-// // flat doesn't work after 4 iterations...
-
-//     var renderedScores = highScores.flat(highScores.length - 1);
-
-
-//     for (j = 0; j < renderedScores.length; j++) {
-
-
-//         var scoreDiv = document.createElement("div");
-//         scoreDiv.setAttribute("class", "scoreDiv");
-
-//         scoreDiv.textContent = "Score: " + renderedScores[j].score + " --------- by " + renderedScores[j].init;
-//         question.append(scoreDiv);
-
-//     }
-
-//     var startOverBtn = document.createElement("button");
-//     startOverBtn.setAttribute("id", "startOverBtn");
-//     startOverBtn.textContent = "Home";
-
-//     var clearScoresBtn = document.createElement("button");
-//     clearScoresBtn.setAttribute("id", "clearScoresBtn");
-//     clearScoresBtn.textContent = "Clear Scores";
-
-//     choices.append(startOverBtn);
-//     choices.append(clearScoresBtn);
-
-//     startOverBtn.onclick = function () {
-
-//         location.reload();
-//         return false; 
-//     }
-
-//     clearScoresBtn.onclick = function () {
-
-//         var clear = scoreDiv.textContent = "";
-
-//         localStorage.clear();
-
-
-// // clear contents - not working
-
-//         question.append(clear);
-//         renderHighScores();
-
-//     }
-
-// };
-
 function getStoredScores() {
 
     if (localStorage.getItem("scores") === null) {
@@ -197,7 +141,6 @@ function getStoredScores() {
 
         console.log(storedScores);
 
-      //  highScores.push(storedScores);
     }
 
 };
@@ -240,20 +183,9 @@ function highScore() {
         newScores.score = timeLeft;
         newScores.init = initInput.value;
 
-     
-
-// assign new scores to high scores object - not working
-// pulls duplicate high scores with each iteration
-
-
-      //  highScores.push(newScores);
-
 
         choices.textContent = "";
 
-        console.log(highScores)
-
-       // renderHighScores()
         var arr = JSON.parse(localStorage.getItem("scores")) || [];
         arr.push(newScores);
         localStorage.setItem("scores", JSON.stringify(arr));
@@ -266,11 +198,6 @@ function highScore() {
 
 viewHighScores.onclick = function () {
 
-    // question.textContent = "";
-    // choices.innerHTML = "";
-
-    // getStoredScores();
-    //renderHighScores();
    window.location.href = "highscores.html";
 
 }
